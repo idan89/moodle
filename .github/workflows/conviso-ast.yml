@@ -1,0 +1,20 @@
+name: Conviso Platform AST
+on:
+ workflow_dispatch:
+ #push:
+ #  branches: [ main, develop ]
+ #pull_request:
+ #  branches: [ main, develop ]
+
+jobs:
+  conviso-ast:
+    runs-on: ubuntu-latest
+    container:
+      image: convisoappsec/convisocli:latest
+      env:
+        CONVISO_API_KEY: ${{secrets.CONVISO_API_KEY}}
+    steps:
+    - uses: actions/checkout@v3
+  
+    - name: AST
+      run: conviso ast run
